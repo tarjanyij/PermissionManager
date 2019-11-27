@@ -11,6 +11,8 @@ namespace PermissionManager.Models
         public string PersonName { get; set; }
         public string PersonEmail { get; set; }
         public int OfficeID { get; set; }
+        public Boolean Approver { get; set; }
+        public Boolean Responsible { get; set; }
         public Office Office { get; set; }
 
     }

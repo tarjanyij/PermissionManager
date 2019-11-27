@@ -22,7 +22,7 @@ namespace PermissionManager.Controllers
         // GET: Permissions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Permissions.Include(p => p.Approver).Include(p => p.Person).Include(p => p.Responsible).Include(p => p.Rights);
+            var applicationDbContext = _context.Permissions.Include(p => p.PermissionPaper).Include(p => p.Person).Include(p => p.Rights);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,9 +35,8 @@ namespace PermissionManager.Controllers
             }
 
             var permission = await _context.Permissions
-                .Include(p => p.Approver)
+                .Include(p => p.PermissionPaper)
                 .Include(p => p.Person)
-                .Include(p => p.Responsible)
                 .Include(p => p.Rights)
                 .FirstOrDefaultAsync(m => m.PermissionID == id);
             if (permission == null)
@@ -51,9 +50,8 @@ namespace PermissionManager.Controllers
         // GET: Permissions/Create
         public IActionResult Create()
         {
-            ViewData["ApproverID"] = new SelectList(_context.Approvers, "ApproverID", "ApproverID");
+            ViewData["PermissionPaperID"] = new SelectList(_context.PermissionPaper, "PermissionPaperID", "PermissionPaperID");
             ViewData["PersonID"] = new SelectList(_context.Persons, "PersonID", "PersonID");
-            ViewData["ResponsibleID"] = new SelectList(_context.Responsibles, "ResponsibleID", "ResponsibleID");
             ViewData["RightsID"] = new SelectList(_context.Rights, "RightsID", "RightsID");
             return View();
         }
@@ -63,7 +61,7 @@ namespace PermissionManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PermissionID,PersonID,RightsID,BeginDate,EndDate,ApproverID,ResponsibleID")] Permission permission)
+        public async Task<IActionResult> Create([Bind("PermissionID,PersonID,RightsID,BeginDate,EndDate,ApproverID,ResponsibleID,PermissionPaperID")] Permission permission)
         {
             if (ModelState.IsValid)
             {
@@ -71,9 +69,8 @@ namespace PermissionManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApproverID"] = new SelectList(_context.Approvers, "ApproverID", "ApproverID", permission.ApproverID);
+            ViewData["PermissionPaperID"] = new SelectList(_context.PermissionPaper, "PermissionPaperID", "PermissionPaperID", permission.PermissionPaperID);
             ViewData["PersonID"] = new SelectList(_context.Persons, "PersonID", "PersonID", permission.PersonID);
-            ViewData["ResponsibleID"] = new SelectList(_context.Responsibles, "ResponsibleID", "ResponsibleID", permission.ResponsibleID);
             ViewData["RightsID"] = new SelectList(_context.Rights, "RightsID", "RightsID", permission.RightsID);
             return View(permission);
         }
@@ -91,9 +88,8 @@ namespace PermissionManager.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApproverID"] = new SelectList(_context.Approvers, "ApproverID", "ApproverID", permission.ApproverID);
+            ViewData["PermissionPaperID"] = new SelectList(_context.PermissionPaper, "PermissionPaperID", "PermissionPaperID", permission.PermissionPaperID);
             ViewData["PersonID"] = new SelectList(_context.Persons, "PersonID", "PersonID", permission.PersonID);
-            ViewData["ResponsibleID"] = new SelectList(_context.Responsibles, "ResponsibleID", "ResponsibleID", permission.ResponsibleID);
             ViewData["RightsID"] = new SelectList(_context.Rights, "RightsID", "RightsID", permission.RightsID);
             return View(permission);
         }
@@ -103,7 +99,7 @@ namespace PermissionManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PermissionID,PersonID,RightsID,BeginDate,EndDate,ApproverID,ResponsibleID")] Permission permission)
+        public async Task<IActionResult> Edit(int id, [Bind("PermissionID,PersonID,RightsID,BeginDate,EndDate,ApproverID,ResponsibleID,PermissionPaperID")] Permission permission)
         {
             if (id != permission.PermissionID)
             {
@@ -130,9 +126,8 @@ namespace PermissionManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApproverID"] = new SelectList(_context.Approvers, "ApproverID", "ApproverID", permission.ApproverID);
+            ViewData["PermissionPaperID"] = new SelectList(_context.PermissionPaper, "PermissionPaperID", "PermissionPaperID", permission.PermissionPaperID);
             ViewData["PersonID"] = new SelectList(_context.Persons, "PersonID", "PersonID", permission.PersonID);
-            ViewData["ResponsibleID"] = new SelectList(_context.Responsibles, "ResponsibleID", "ResponsibleID", permission.ResponsibleID);
             ViewData["RightsID"] = new SelectList(_context.Rights, "RightsID", "RightsID", permission.RightsID);
             return View(permission);
         }
@@ -146,9 +141,8 @@ namespace PermissionManager.Controllers
             }
 
             var permission = await _context.Permissions
-                .Include(p => p.Approver)
+                .Include(p => p.PermissionPaper)
                 .Include(p => p.Person)
-                .Include(p => p.Responsible)
                 .Include(p => p.Rights)
                 .FirstOrDefaultAsync(m => m.PermissionID == id);
             if (permission == null)

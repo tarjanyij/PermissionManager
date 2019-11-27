@@ -13,14 +13,15 @@ namespace PermissionManager.Data
             : base(options)
         {
         }
-        public DbSet<PermissionManager.Models.Approver> Approvers { get; set; }
+     
         public DbSet<PermissionManager.Models.Office> Offices { get; set; }
         public DbSet<PermissionManager.Models.Permission> Permissions { get; set; }
         public DbSet<PermissionManager.Models.Person> Persons { get; set; }
-        public DbSet<PermissionManager.Models.Responsible> Responsibles { get; set; }
+
         public DbSet<PermissionManager.Models.Rights> Rights { get; set; }
         public DbSet<PermissionManager.Models.OfficeRights> OfficeRights { get; set; }
         public DbSet<PermissionManager.Models.PermissionLog> PermissionLog { get; set; }
+        public DbSet<PermissionManager.Models.PermissionPaper> PermissionPaper { get; set; }
 
     }
 }

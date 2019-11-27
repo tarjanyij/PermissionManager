@@ -19,16 +19,19 @@
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ApproverID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponsibleID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Person)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rights)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Approver)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Responsible)
+                @Html.DisplayNameFor(model => model.PermissionPaper)
             </th>
             <th></th>
         </tr>
@@ -43,16 +46,19 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ApproverID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResponsibleID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Person.PersonID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rights.RightsID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Approver.ApproverID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Responsible.ResponsibleID)
+                @Html.DisplayFor(modelItem => item.PermissionPaper.PermissionPaperID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PermissionID">Edit</a> |

@@ -15,12 +15,10 @@ namespace PermissionManager.Models
         public DateTime EndDate { get; set; }
         public int ApproverID { get; set; }
         public int ResponsibleID { get; set; }
-
+        public int PermissionPaperID { get; set; }
         public Person Person { get; set; }
-        
         public Rights Rights { get; set; }
-        public Approver Approver { get; set; }
-        public Responsible Responsible { get; set; }
 
+        public PermissionPaper PermissionPaper { get; set; }
     }
 }

@@ -19,6 +19,12 @@
                 @Html.DisplayNameFor(model => model.PersonEmail)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Approver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Responsible)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Office)
             </th>
             <th></th>
@@ -32,6 +38,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PersonEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Responsible)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Office.OfficeID)
